@@ -1,8 +1,8 @@
 <template>
   <div class="input-camera">
-    // capture属性用于调起摄像头
+    <!-- capture属性用于调起摄像头 -->
     <input ref="inputRef" class="input" type="file" accept="image/*" capture="environment" @change="onChange">
-    // 用于显示图片
+    <!-- 用于显示图片 -->
     <img :src="photoSrc" ref="photoRef" class="photo" @click="choicePhoto" />
   </div>
 </template>

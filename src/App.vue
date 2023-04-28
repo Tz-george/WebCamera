@@ -2,7 +2,8 @@
 </script>
 
 <template>
-  <a href="https://pt-lgyz.oa.cmbchina.biz/h5/#/e-visa" >跳转</a>
+  <router-link to="/">通过摄像头数据流</router-link>
+  <router-link to="/input">通过input标签唤起摄像头</router-link>
   <router-view>
   </router-view>
 </template>
