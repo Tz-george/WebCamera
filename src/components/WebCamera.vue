@@ -8,7 +8,6 @@ import { onMounted, ref, unref } from "vue";
   const errorText = ref("")
 
   const ua = navigator.userAgent.toLowerCase()
-  console.log(ua)
   errorText.value = ua
   const isPhone = /(android|iphone)/i.test(ua)
 
