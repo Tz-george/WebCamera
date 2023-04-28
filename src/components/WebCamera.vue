@@ -73,6 +73,10 @@ import { onMounted, ref, unref } from "vue";
         })
   }
 
+  const imgSrc = ref("")
+  const blob = ref()
+  const imgHeight = ref(0)
+  const imgWidth = ref(0)
   // 截图并且关闭摄像头
   function cutAndClose() {
     // 停止绘制
@@ -92,6 +96,18 @@ import { onMounted, ref, unref } from "vue";
 
     // 清空video的数据源（关闭依赖，使得可以进行垃圾回收，在chrome上必须执行这一步，摄像头权限才会被收回）
     video.value.srcObject = null
+
+    // 生成图片
+    imgSrc.value = canvas.value.toDataURL('image/jpeg')
+
+
+    imgHeight.value = videoHeight.value
+    imgWidth.value = videoWidth.value
+
+        // 生成文件，后期可用于上传
+    canvas.value.toBlob(item => {
+      blob.value = item
+    }, 'image/jpeg', 1)
   }
 </script>
 
@@ -100,6 +116,7 @@ import { onMounted, ref, unref } from "vue";
     <div>{{ errorText }}</div>
     <video ref="video" autoplay muted loop playsinline></video>
     <canvas ref="canvas" :height="videoHeight" :width="videoWidth" />
+    <img :src="imgSrc" alt="截图" :height="imgHeight" :width="imgWidth">
     <div>
       <button @click="start">重拍</button>
       <button @click="cutAndClose" >拍照</button>
